@@ -1,6 +1,6 @@
 import json
 import bottle
-from bottle import route, run, request, abort
+from bottle import route, run, request, abort, template, static_file
 from bottle_rest import json_to_params, json_to_data
 from pymongo import MongoClient
 from bson.objectid import ObjectId
@@ -118,26 +118,26 @@ def notification(data):
 
 @route("/")
 def index():
-    return template("app/index.html", url=url)
+    return template("app/index.html")
 
 
-@route("/node_modules", name="node_modules")
+@route("/node_modules/<filename:re:.*>", name="node_modules")
 def node_modules(filename):
     return static_file(filename, root="node_modules")
 
-@route("/assets/<filename>", name="assets")
+@route("/assets/<filename:re:.*>", name="assets")
 def assets(filename):
     return static_file(filename, root="app/assets")
 
-@route("/css/<filename>", name="css")
+@route("/css/<filename:re:.*>", name="css")
 def css(filename):
     return static_file(filename, root="app/css")
 
-@route("/js/<filename>", name="js")
+@route("/js/<filename:re:.*>", name="js")
 def js(filename):
     return static_file(filename, root="app/js")
 
-@route("/templates/<filename>", name="templates")
+@route("/templates/<filename:re:.*>", name="templates")
 def templates(filename):
     return static_file(filename, root="app/templates")
 
