@@ -1,0 +1,32 @@
+<div layout="column" layout-align="center center" layout-fill="layout-fill">
+<div class="loginBox md-whiteframe-z1" layout="column">
+   <md-toolbar>
+     <h2 class="md-toolbar-tools"><span>Wallet</span></h2>
+   </md-toolbar>
+   <md-content class="md-padding" layout="column">
+       <p>Your balance is {{balance}}</p>
+       <form name="rechargeForm" layout="row" ng-submit="recharge(rechargeForm.$valid)">
+           <md-input-container flex>
+               <label>Amount</label>
+               <input ng-model="rechargeAmount" type="text" name="rechargeAmount" ng-required="true"
+                      ng-pattern="/^[0-9]+$/" ng-minlength="1" ng-maxlength="16">
+           </md-input-container>
+           <md-button class="md-primary" type="submit"
+                      ng-disabled="!rechargeForm.$valid">
+               Recharge <md-icon md-svg-src="./assets/svg/recharge.svg"></md-icon>
+           </md-button>
+       </form>
+       <form name="spendForm" layout="row" ng-submit="spend(spendForm.$valid)">
+           <md-input-container flex>
+               <label>Amount</label>
+               <input ng-model="spendAmount" type="text" name="spendAmount" ng-required="true"
+                      ng-pattern="/^[0-9]+$/" ng-minlength="1" ng-maxlength="16">
+           </md-input-container>
+           <md-button class="md-primary" type="submit"
+                      ng-disabled="!spendForm.$valid">
+               Spend <md-icon md-svg-src="./assets/svg/spend.svg"></md-icon>
+           </md-button>
+       </form>
+   </md-content>
+</div>
+</div>
